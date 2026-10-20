@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Operacional · Rühling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --verde: #5cb82c;
+      --verde-escuro: #3f8f1a;
+      --verde-claro: #f1f8ec;
+      --grafite: #4a4a4a;
+      --grafite-escuro: #262626;
+      --fundo: #f5f5f2;
+      --papel: #ffffff;
+      --linha: #e3e3de;
+      --muted: #77777a;
+      --titulo: 'Montserrat', 'Segoe UI', sans-serif;
+      --corpo: 'Open Sans', 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+
+    body {
+      font-family: var(--corpo);
+      background: var(--fundo);
+      color: var(--grafite-escuro);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- Topo ---------- */
+    .topo {
+      background: var(--papel);
+      border-bottom: 1px solid var(--linha);
+    }
+    .topo-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo { height: 46px; display: block; }
+    .logo-fallback {
+      display: none;
+      font-family: var(--titulo);
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--grafite);
+    }
+    .logo-fallback b { color: var(--verde); }
+    .topo-meta {
+      text-align: right;
+      font-family: var(--titulo);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .topo-meta strong { color: var(--grafite); display: block; font-weight: 700; }
+    .faixa { height: 4px; background: linear-gradient(90deg, var(--verde) 0 88px, var(--grafite) 88px 100%); }
+
+    /* ---------- Abertura ---------- */
+    .abertura {
+      position: relative;
+      overflow: hidden;
+      background: var(--papel);
+      border-bottom: 1px solid var(--linha);
+    }
+    .abertura::after {
+      content: '';
+      position: absolute;
+      right: 4%;
+      top: -30px;
+      width: 340px;
+      height: 280px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 100'%3E%3Cpath d='M8 52 L38 84 L112 6' fill='none' stroke='%235cb82c' stroke-width='15' stroke-linejoin='miter' stroke-linecap='butt' opacity='0.1'/%3E%3C/svg%3E") no-repeat center / contain;
+      pointer-events: none;
+    }
+    .abertura-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 38px 32px 34px;
+    }
+    .saudacao {
+      font-family: var(--titulo);
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--grafite-escuro);
+      letter-spacing: -0.3px;
+    }
+    .saudacao em { font-style: normal; color: var(--verde-escuro); }
+    .data {
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: capitalize;
+    }
+
+    .busca { margin-top: 26px; max-width: 720px; }
+    .busca-modos { display: flex; gap: 22px; margin-bottom: -1px; position: relative; z-index: 2; }
+    .modo {
+      background: none;
+      border: none;
+      font-family: var(--titulo);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 0 9px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+    }
+    .modo:hover { color: var(--grafite); }
+    .modo.ativo { color: var(--grafite-escuro); border-bottom-color: var(--verde); }
+
+    .busca-campo {
+      display: flex;
+      align-items: center;
+      background: var(--fundo);
+      border: 1px solid var(--linha);
+      border-top: 1px solid var(--linha);
+      transition: border-color .15s, background .15s;
+    }
+    .busca-campo:focus-within { border-color: var(--verde); background: #fff; }
+    .busca-campo svg { margin-left: 14px; flex: none; color: var(--muted); }
+    .busca-campo input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--corpo);
+      font-size: 1rem;
+      padding: 14px 14px;
+      color: var(--grafite-escuro);
+    }
+    .busca-campo kbd {
+      font-family: var(--titulo);
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      border: 1px solid var(--linha);
+      background: #fff;
+      padding: 2px 8px;
+      margin-right: 12px;
+    }
+    .busca-campo button {
+      border: none;
+      background: var(--grafite);
+      color: #fff;
+      font-family: var(--titulo);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0 22px;
+      align-self: stretch;
+      cursor: pointer;
+      display: none;
+    }
+    .busca-campo button:hover { background: var(--verde-escuro); }
+    .modo-google .busca-campo button { display: block; }
+    .modo-google .busca-campo kbd { display: none; }
+
+    /* ---------- Corpo ---------- */
+    .layout {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 32px 60px;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    nav.indice {
+      position: sticky;
+      top: 24px;
+    }
+    .indice h3 {
+      font-family: var(--titulo);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .indice a {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      padding: 8px 0 8px 14px;
+      border-left: 2px solid var(--linha);
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--grafite);
+      transition: all .15s;
+    }
+    .indice a span { font-family: var(--titulo); font-size: 0.68rem; font-weight: 700; color: var(--muted); }
+    .indice a:hover { color: var(--verde-escuro); border-left-color: var(--verde); }
+    .indice a.ativo { border-left-color: var(--verde); color: var(--grafite-escuro); font-weight: 600; background: linear-gradient(90deg, var(--verde-claro), transparent); }
+    .indice a.ativo span { color: var(--verde-escuro); }
+
+    .secao { margin-bottom: 40px; }
+    .secao-cab {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .secao-cab .num {
+      font-family: var(--titulo);
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--verde-escuro);
+    }
+    .secao-cab h2 {
+      font-family: var(--titulo);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--grafite-escuro);
+      white-space: nowrap;
+    }
+    .secao-cab .regua { flex: 1; height: 1px; background: var(--linha); }
+
+    .lista {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      background: var(--papel);
+      border: 1px solid var(--linha);
+    }
+    .item {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid var(--linha);
+      transition: background .15s;
+    }
+    .item:nth-child(odd) { border-right: 1px solid var(--linha); }
+    .item:hover { background: var(--verde-claro); }
+    .item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--verde);
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform .18s;
+    }
+    .item:hover::before { transform: scaleY(1); }
+
+    .item-link {
+      flex: 1;
+      min-width: 0;
+      text-decoration: none;
+      color: inherit;
+      padding: 16px 8px 16px 20px;
+      display: block;
+    }
+    .item-nome {
+      font-family: var(--titulo);
+      font-weight: 600;
+      font-size: 0.93rem;
+      color: var(--grafite-escuro);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .item-nome svg { color: var(--muted); flex: none; transition: transform .18s, color .18s; }
+    .item:hover .item-nome svg { color: var(--verde-escuro); transform: translate(2px, -2px); }
+    .item-desc {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .item-caminho {
+      margin-top: 6px;
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--grafite);
+      background: var(--fundo);
+      display: inline-block;
+      padding: 2px 6px;
+      border: 1px solid var(--linha);
+    }
+
+    .fav {
+      flex: none;
+      width: 42px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #b8b8b2;
+      opacity: 0;
+      transition: opacity .15s, color .15s;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 17px;
+    }
+    .item:hover .fav, .fav.on, .fav:focus-visible { opacity: 1; }
+    .fav:hover { color: var(--verde-escuro); }
+    .fav.on { color: var(--verde); }
+    .fav.on svg { fill: currentColor; }
+
+    .vazio {
+      display: none;
+      padding: 50px 20px;
+      text-align: center;
+      background: var(--papel);
+      border: 1px dashed var(--linha);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .vazio a { color: var(--verde-escuro); font-weight: 600; }
+
+    footer {
+      border-top: 1px solid var(--linha);
+      background: var(--papel);
+    }
+    footer div {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    footer b { font-family: var(--titulo); color: var(--grafite); font-weight: 700; letter-spacing: .5px; }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translate(-50%, 20px);
+      background: var(--grafite-escuro);
+      color: #fff;
+      font-size: 0.85rem;
+      padding: 12px 20px;
+      border-bottom: 3px solid var(--verde);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s;
+      z-index: 50;
+      max-width: 90vw;
+    }
+    #toast.vis { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ---------- Responsivo ---------- */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; gap: 24px; padding: 24px 18px 50px; }
+      nav.indice { position: static; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+      .indice h3 { display: none; }
+      .indice a { border: 1px solid var(--linha); background: #fff; padding: 7px 12px; white-space: nowrap; }
+      .indice a.ativo { background: var(--verde-claro); }
+      .topo-inner, .abertura-inner, footer div { padding-left: 18px; padding-right: 18px; }
+      .abertura::after { opacity: .6; right: -80px; }
+      .saudacao { font-size: 1.4rem; }
+    }
+    @media (max-width: 640px) {
+      .lista { grid-template-columns: 1fr; }
+      .item:nth-child(odd) { border-right: none; }
+      .topo-meta { display: none; }
+      .fav { opacity: 1; }
+    }
+    @media print { .busca, nav.indice, .fav { display: none; } }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="topo-inner">
+      <div>
+        <img class="logo" src="logo ruhling.png" alt="Rühling Inteligência em Contabilidade"
+             onerror="this.style.display='none'; document.getElementById('logoAlt').style.display='block';">
+        <div class="logo-fallback" id="logoAlt">RÜHLING<b> ✓</b></div>
+      </div>
+      <div class="topo-meta">
+        <strong>Portal Operacional</strong>
+        Uso interno da equipe
+      </div>
+    </div>
+    <div class="faixa"></div>
+  </header>
+
+  <section class="abertura">
+    <div class="abertura-inner">
+      <h1 class="saudacao" id="saudacao">Olá, <em>equipe Rühling</em></h1>
+      <p class="data" id="data"></p>
+
+      <div class="busca" id="busca">
+        <div class="busca-modos">
+          <button class="modo ativo" data-modo="interno" type="button">Nos sistemas</button>
+          <button class="modo" data-modo="google" type="button">NO GOOGLE</button>
+        </div>
+        <form class="busca-campo" id="formBusca" autocomplete="off">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="text" id="campo" placeholder="Filtrar sistemas, guias ou departamentos" aria-label="Pesquisar">
+          <kbd>/</kbd>
+          <button type="submit">Pesquisar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <main class="layout">
+    <nav class="indice" id="indice" aria-label="Seções"></nav>
+    <div id="conteudo">
+      <div class="vazio" id="vazio"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <span><b>RÜHLING</b> · Inteligência em Contabilidade</span>
+      <span>Portal interno. Em caso de link com problema, avise o responsável pelo TI.</span>
+    </div>
+  </footer>
+
+  <div id="toast" role="status"></div>
+
+  <script>
+    /* =====================================================
+       CONFIGURAÇÃO — edite aqui para incluir ou alterar links
+       • Para site:   { nome, desc, url }
+       • Para pasta:  { nome, desc, pasta }   (caminho de rede)
+       ===================================================== */
+    const SECOES = [
+      { id: 'gerais', titulo: 'Sistemas e Portais Gerais', itens: [
+        { nome: 'Portal e-CAC', desc: 'Receita Federal, certidões e situação fiscal federal', url: 'https://cav.receita.fazenda.gov.br/' },
+        { nome: 'Acessórias', desc: 'Acompanhamento de entregas, tarefas e comunicação', url: 'https://app.acessorias.com/' },
+        { nome: 'Onvio', desc: 'Sistema contábil integrado, escrituração e folha', url: 'https://www.onvio.com.br/' }
+      ]},
+      { id: 'tributario', titulo: 'Tributário', itens: [
+        { nome: 'Sefaz Estadual', desc: 'Consulta ICMS, NF-e, credenciamento e emissão de DAR', url: 'https://www.sefaz.mt.gov.br/' },
+        { nome: 'Simples Nacional', desc: 'PGDAS-D, DEFIS, cálculo mensal e parcelamentos', url: 'https://www8.receita.fazenda.gov.br/SimplesNacional/' },
+        { nome: 'Portal da Prefeitura', desc: 'Emissão de NFS-e, alvarás e tributos municipais', url: 'https://tributario.cuiaba.mt.gov.br/' }
+      ]},
+      { id: 'trabalhista', titulo: 'Trabalhista', itens: [
+        { nome: 'eSocial Web Geral', desc: 'Gestão de eventos, fechamento e dados trabalhistas', url: 'https://login.esocial.gov.br/' },
+        { nome: 'Conectividade Social (FGTS)', desc: 'Envio de arquivos SEFIP/GRRF e regularidade CRF', url: 'https://conectividadesocialv2.caixa.gov.br/' },
+        { nome: 'Empregador Web', desc: 'Requerimento de seguro-desemprego e BEm', url: 'https://servicos.mte.gov.br/empregador/' }
+      ]},
+      { id: 'contabil', titulo: 'Contábil', itens: [
+        { nome: 'Portal SPED', desc: 'ECD, ECF, manuais de leiaute e validação contábil', url: 'http://sped.rfb.gov.br/' },
+        { nome: 'Banco Central do Brasil', desc: 'Índices econômicos, taxas de juros e cotações de moedas', url: 'https://www.bcb.gov.br/' }
+      ]},
+      { id: 'societario', titulo: 'Societário', itens: [
+        { nome: 'Junta Comercial', desc: 'Protocolo web, consulta de processos e autenticação de livros', url: 'https://www.jucemat.mt.gov.br/' },
+        { nome: 'Portal Redesim', desc: 'Viabilidade locacional, DBE e regularização de CNPJ', url: 'https://www.gov.br/empresas-e-negocios/pt-br/redesim' }
+      ]},
+      { id: 'internos', titulo: 'Manuais e Procedimentos Internos', itens: [
+        { nome: 'Manuais Operacionais', desc: 'Procedimentos Padrão (POPs) de cada setor', pasta: '\\\\servidor\\contabilidade\\manuais' },
+        { nome: 'Modelos e Contratos', desc: 'Minutas de contrato, declarações e procurações', pasta: '\\\\servidor\\contabilidade\\modelos' },
+        { nome: 'Integração e Treinamento', desc: 'Guias para novos colaboradores e rotinas de apoio', pasta: '\\\\servidor\\contabilidade\\treinamentos' }
+      ]}
+    ];
+
+    /* ---------- Utilidades ---------- */
+    const $ = (s, el = document) => el.querySelector(s);
+    const esc = t => String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const norm = t => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+    const ICON_EXT = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>';
+    const ICON_PASTA = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>';
+    const ICON_STAR = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>';
+
+    /* Favoritos (guardados no navegador) */
+    let favoritos = [];
+    try { favoritos = JSON.parse(localStorage.getItem('ruhling_favoritos') || '[]'); } catch (e) {}
+    const salvarFavs = () => { try { localStorage.setItem('ruhling_favoritos', JSON.stringify(favoritos)); } catch (e) {} };
+
+    let modo = 'interno';
+    let termo = '';
+
+    /* ---------- Saudação ---------- */
+    (function () {
+      const h = new Date().getHours();
+      const s = h < 12 ? 'Bom dia' : h < 18 ? 'Boa tarde' : 'Boa noite';
+      $('#saudacao').innerHTML = s + ', <em>equipe Rühling</em>';
+      $('#data').textContent = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    })();
+
+    /* ---------- Renderização ---------- */
+    function itemHTML(it) {
+      const ehPasta = !!it.pasta;
+      const on = favoritos.includes(it.nome);
+      const href = ehPasta ? 'abrirpasta:' + encodeURI(it.pasta.replace(/\\/g, '/')) : it.url;
+      const attrs = ehPasta ? `data-pasta="${esc(it.pasta)}"` : 'target="_blank" rel="noopener noreferrer"';
+      return `
+        <div class="item">
+          <a class="item-link" href="${esc(href)}" ${attrs}>
+            <div class="item-nome">${esc(it.nome)} ${ehPasta ? ICON_PASTA : ICON_EXT}</div>
+            <div class="item-desc">${esc(it.desc)}</div>
+            ${ehPasta ? `<span class="item-caminho">${esc(it.pasta)}</span>` : ''}
+          </a>
+          <button class="fav ${on ? 'on' : ''}" data-fav="${esc(it.nome)}" type="button"
+                  title="${on ? 'Remover dos favoritos' : 'Fixar nos favoritos'}" aria-label="Favorito">${ICON_STAR}</button>
+        </div>`;
+    }
+
+    function render() {
+      const filtrar = modo === 'interno' && termo.length > 0;
+      const t = norm(termo);
+      const todos = SECOES.flatMap(s => s.itens);
+      const secoesVisiveis = [];
+
+      // Favoritos primeiro
+      const favItens = todos.filter(i => favoritos.includes(i.nome))
+                            .filter(i => !filtrar || norm(i.nome + ' ' + i.desc).includes(t));
+      if (favItens.length) secoesVisiveis.push({ id: 'favoritos', titulo: 'Favoritos', itens: favItens });
+
+      SECOES.forEach(s => {
+        const itens = s.itens.filter(i => !filtrar || norm(i.nome + ' ' + i.desc + ' ' + s.titulo).includes(t));
+        if (itens.length) secoesVisiveis.push({ ...s, itens });
+      });
+
+      // Conteúdo
+      $('#conteudo').querySelectorAll('.secao').forEach(n => n.remove());
+      const vazio = $('#vazio');
+      const frag = document.createDocumentFragment();
+      secoesVisiveis.forEach((s, i) => {
+        const sec = document.createElement('section');
+        sec.className = 'secao';
+        sec.id = s.id;
+        sec.innerHTML = `
+          <div class="secao-cab">
+            <span class="num">${String(i + 1).padStart(2, '0')}</span>
+            <h2>${esc(s.titulo)}</h2>
+            <span class="regua"></span>
+          </div>
+          <div class="lista">${s.itens.map(itemHTML).join('')}</div>`;
+        frag.appendChild(sec);
+      });
+      $('#conteudo').insertBefore(frag, vazio);
+
+      if (!secoesVisiveis.length) {
+        vazio.style.display = 'block';
+        vazio.innerHTML = `Nenhum sistema encontrado para “${esc(termo)}”.<br>
+          <a href="https://www.google.com/search?q=${encodeURIComponent(termo)}" target="_blank" rel="noopener">Pesquisar no Google</a>`;
+      } else {
+        vazio.style.display = 'none';
+      }
+
+      // Índice lateral
+      $('#indice').innerHTML = '<h3>Seções</h3>' + secoesVisiveis.map((s, i) =>
+        `<a href="#${s.id}" data-sec="${s.id}"><span>${String(i + 1).padStart(2, '0')}</span>${esc(s.titulo)}</a>`).join('');
+      observar();
+    }
+
+    /* ---------- Destaque da seção ativa ---------- */
+    let obs;
+    function observar() {
+      if (obs) obs.disconnect();
+      obs = new IntersectionObserver(entradas => {
+        entradas.forEach(e => {
+          if (e.isIntersecting) {
+            document.querySelectorAll('.indice a').forEach(a => a.classList.toggle('ativo', a.dataset.sec === e.target.id));
+          }
+        });
+      }, { rootMargin: '-20% 0px -65% 0px' });
+      document.querySelectorAll('.secao').forEach(s => obs.observe(s));
+    }
+
+    /* ---------- Interações ---------- */
+    let toastTimer;
+    function toast(msg) {
+      const el = $('#toast');
+      el.textContent = msg;
+      el.classList.add('vis');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('vis'), 3800);
+    }
+
+    document.addEventListener('click', e => {
+      const fav = e.target.closest('[data-fav]');
+      if (fav) {
+        const n = fav.dataset.fav;
+        favoritos = favoritos.includes(n) ? favoritos.filter(x => x !== n) : [...favoritos, n];
+        salvarFavs();
+        render();
+        return;
+      }
+      const pasta = e.target.closest('[data-pasta]');
+      if (pasta) {
+        const caminho = pasta.dataset.pasta;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(caminho)
+            .then(() => toast('Abrindo a pasta… O caminho também foi copiado, caso precise colar no Explorador.'))
+            .catch(() => toast('Caminho da pasta: ' + caminho));
+        } else {
+          toast('Caminho da pasta: ' + caminho);
+        }
+      }
+    });
+
+    $('#campo').addEventListener('input', e => {
+      termo = e.target.value.trim();
+      if (modo === 'interno') render();
+    });
+
+    $('#formBusca').addEventListener('submit', e => {
+      e.preventDefault();
+      if (modo === 'google' && termo) {
+        window.open('https://www.google.com/search?q=' + encodeURIComponent(termo), '_blank', 'noopener');
+      }
+    });
+
+    document.querySelectorAll('.modo').forEach(b => b.addEventListener('click', () => {
+      modo = b.dataset.modo;
+      document.querySelectorAll('.modo').forEach(x => x.classList.toggle('ativo', x === b));
+      $('#busca').classList.toggle('modo-google', modo === 'google');
+      $('#campo').placeholder = modo === 'google' ? 'Pesquisar no Google' : 'Filtrar sistemas, guias ou departamentos';
+      render();
+      $('#campo').focus();
+    }));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === '/' && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        e.preventDefault();
+        $('#campo').focus();
+      }
+      if (e.key === 'Escape' && document.activeElement === $('#campo')) {
+        $('#campo').value = ''; termo = ''; render(); $('#campo').blur();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
