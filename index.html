@@ -451,31 +451,49 @@
     const SECOES = [
       { id: 'gerais', titulo: 'Sistemas e Portais Gerais', itens: [
         { nome: 'Portal e-CAC', desc: 'Receita Federal, certidões e situação fiscal federal', url: 'https://cav.receita.fazenda.gov.br/' },
-        { nome: 'Acessórias', desc: 'Acompanhamento de entregas, tarefas e comunicação', url: 'https://app.acessorias.com/' },
-        { nome: 'Onvio', desc: 'Sistema contábil integrado, escrituração e folha', url: 'https://www.onvio.com.br/' }
+        { nome: 'Acessórias', desc: 'Acompanhamento de entregas, tarefas e comunicação', url: 'https://app.acessorias.com/sysmain.php' },
+        { nome: 'Onvio', desc: 'Sistema contábil integrado, escrituração e folha', url: 'https://onvio.com.br/login/#/' },
+        { nome: 'Econet Editora', desc: 'Legislação, consultoria e orientações fiscais, trabalhistas e contábeis', url: 'https://www.econeteditora.com.br/' },
+        { nome: 'Gestor Sistemas', desc: 'Emissão de NFS-e e gestão de clientes', url: 'https://app.gestorsistemas.com/sistema/dash-office/customer' },
+        { nome: 'Central de Soluções Domínio', desc: 'Base de conhecimento e suporte do sistema Domínio', url: 'https://suporte.dominioatendimento.com/central/faces/central-solucoes.html' }
       ]},
       { id: 'tributario', titulo: 'Tributário', itens: [
         { nome: 'Sefaz Estadual', desc: 'Consulta ICMS, NF-e, credenciamento e emissão de DAR', url: 'https://www.sefaz.mt.gov.br/' },
+        { nome: 'SEFAZ-MT · DTE', desc: 'Domicílio Tributário Eletrônico: mensagens e notificações da SEFAZ', url: 'https://www.sefaz.mt.gov.br/dte/pages/login/login.xhtml' },
+        { nome: 'SEFAZ-MT · Acesso Restrito', desc: 'Login de contribuinte e contabilista nos serviços da SEFAZ-MT', url: 'https://www.sefaz.mt.gov.br/acesso/pages/login/login.xhtml' },
         { nome: 'Simples Nacional', desc: 'PGDAS-D, DEFIS, cálculo mensal e parcelamentos', url: 'https://www8.receita.fazenda.gov.br/SimplesNacional/' },
-        { nome: 'Portal da Prefeitura', desc: 'Emissão de NFS-e, alvarás e tributos municipais', url: 'https://tributario.cuiaba.mt.gov.br/' }
+        { nome: 'Portal da Prefeitura', desc: 'Emissão de NFS-e, alvarás e tributos municipais', url: 'https://tributario.cuiaba.mt.gov.br/' },
+        { nome: 'Sittax', desc: 'Plataforma fiscal: apuração do Simples Nacional e análise tributária', url: 'https://sittax.com.br/' },
+        { nome: 'Gerador SPED Zerado', desc: 'Gera EFD ICMS/IPI e EFD Contribuições sem movimento', url: 'https://sped.ruhling.com.br/' }
       ]},
       { id: 'trabalhista', titulo: 'Trabalhista', itens: [
         { nome: 'eSocial Web Geral', desc: 'Gestão de eventos, fechamento e dados trabalhistas', url: 'https://login.esocial.gov.br/' },
-        { nome: 'Conectividade Social (FGTS)', desc: 'Envio de arquivos SEFIP/GRRF e regularidade CRF', url: 'https://conectividadesocialv2.caixa.gov.br/' },
-        { nome: 'Empregador Web', desc: 'Requerimento de seguro-desemprego e BEm', url: 'https://servicos.mte.gov.br/empregador/' }
+        { nome: 'FGTS Digital', desc: 'Emissão de guias do FGTS, consulta de débitos e parcelamentos', url: 'https://fgtsdigital.sistema.gov.br/portal/login' },
+        { nome: 'Conectividade Social (FGTS)', desc: 'Competências anteriores ao FGTS Digital e regularidade CRF', url: 'https://conectividadesocialv2.caixa.gov.br/' },
+        { nome: 'Emprega Brasil', desc: 'Acesso ao consignado do trabalhador', url: 'https://servicos.mte.gov.br/empregador/' },
+        { nome: 'Empregador Web', desc: 'Requerimento de seguro-desemprego', url: 'https://sd.maisemprego.mte.gov.br/sdweb/empregadorweb/index.jsf' }
       ]},
       { id: 'contabil', titulo: 'Contábil', itens: [
         { nome: 'Portal SPED', desc: 'ECD, ECF, manuais de leiaute e validação contábil', url: 'http://sped.rfb.gov.br/' },
-        { nome: 'Banco Central do Brasil', desc: 'Índices econômicos, taxas de juros e cotações de moedas', url: 'https://www.bcb.gov.br/' }
+        { nome: 'Banco Central do Brasil', desc: 'Índices econômicos, taxas de juros e cotações de moedas', url: 'https://www.bcb.gov.br/' },
+        { nome: 'Omie', desc: 'ERP dos clientes: lançamentos financeiros, notas e relatórios', url: 'https://www.omie.com.br/' },
+        { nome: 'Conta Azul', desc: 'ERP dos clientes: extratos, lançamentos e conciliação', url: 'https://login.contaazul.com/#/' }
       ]},
       { id: 'societario', titulo: 'Societário', itens: [
         { nome: 'Junta Comercial', desc: 'Protocolo web, consulta de processos e autenticação de livros', url: 'https://www.jucemat.mt.gov.br/' },
-        { nome: 'Portal Redesim', desc: 'Viabilidade locacional, DBE e regularização de CNPJ', url: 'https://www.gov.br/empresas-e-negocios/pt-br/redesim' }
+        { nome: 'Portal Redesim', desc: 'Viabilidade locacional, DBE e regularização de CNPJ', url: 'https://www.gov.br/empresas-e-negocios/pt-br/redesim' },
+        { nome: 'Informe Societário', desc: 'Gera o PDF do Informe Societário', url: 'https://informe.ruhling.com.br/' }
       ]},
-      { id: 'internos', titulo: 'Manuais e Procedimentos Internos', itens: [
-        { nome: 'Manuais Operacionais', desc: 'Procedimentos Padrão (POPs) de cada setor', pasta: '\\\\servidor\\contabilidade\\manuais' },
-        { nome: 'Modelos e Contratos', desc: 'Minutas de contrato, declarações e procurações', pasta: '\\\\servidor\\contabilidade\\modelos' },
-        { nome: 'Integração e Treinamento', desc: 'Guias para novos colaboradores e rotinas de apoio', pasta: '\\\\servidor\\contabilidade\\treinamentos' }
+      { id: 'recepcao', titulo: 'Recepção', itens: [
+      ]},
+      { id: 'ti', titulo: 'TI', itens: [
+        { nome: 'EAJ · Abrir Chamado', desc: 'Portal do cliente EAJ para abrir chamados de suporte', url: 'https://suporte.eaj.com.br/portal/portal-cliente-abrir.html' },
+        { nome: 'EAJ · GLPI', desc: 'Gerenciador Livre de Parque de Informática', url: 'http://eaj.ddns.net:8079/front/central.php' },
+        { nome: 'Webmail Rühling', desc: 'E-mail corporativo da Rühling', url: 'https://webmail.ruhling.com.br/' },
+        { nome: 'Vivo Gestão', desc: 'Gestão das linhas e serviços de telefonia Vivo', url: 'https://gestaocontactcenter.vivo.com.br/auth/login' },
+        { nome: 'Download Domínio Sistemas', desc: 'Instaladores e atualizações do Domínio', url: 'https://download.dominiosistemas.com.br/' }
+      ]},
+      { id: 'financeiro', titulo: 'Financeiro', itens: [
       ]}
     ];
 
